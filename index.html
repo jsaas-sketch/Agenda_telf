@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agenda Telefónica</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 40px; 
+            background: #f8f9fa; 
+            color: #333;
+        }
+        h1 { color: #444; }
+        form { margin-bottom: 20px; }
+        input { padding: 5px; margin: 5px; }
+        button { padding: 5px 10px; cursor: pointer; }
+        table { 
+            border-collapse: collapse; 
+            width: 60%; 
+            margin-top: 10px;
+        }
+        th, td { 
+            border: 1px solid #ccc; 
+            padding: 8px; 
+            text-align: left; 
+        }
+        th { background: #eee; }
+        a { color: red; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>📞 Agenda Telefónica</h1>
+
+    <h2>Registrar nuevo contacto</h2>
+    <form id="formulario">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="text" id="telefono" placeholder="Teléfono" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <h2>Lista de contactos</h2>
+    <table id="tabla-contactos">
+        <thead>
+            <tr><th>Nombre</th><th>Teléfono</th><th>Acción</th></tr>
+        </thead>
+        <tbody>
+            <!-- Contactos se agregarán aquí -->
+        </tbody>
+    </table>
+
+    <script>
+        // Recuperar contactos del localStorage o iniciar vacío
+        let agenda = JSON.parse(localStorage.getItem('agenda')) || {};
+
+        const formulario = document.getElementById('formulario');
+        const tabla = document.getElementById('tabla-contactos').getElementsByTagName('tbody')[0];
+
+        // Función para actualizar la tabla
+        function actualizarTabla() {
+            tabla.innerHTML = '';
+            for (let nombre in agenda) {
+                const fila = document.createElement('tr');
+                fila.innerHTML = `
+                    <td>${nombre}</td>
+                    <td>${agenda[nombre]}</td>
+                    <td><a href="#" onclick="eliminarContacto('${nombre}')">Eliminar</a></td>
+                `;
+                tabla.appendChild(fila);
+            }
+        }
+
+        // Función para agregar contacto
+        formulario.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            if (nombre && telefono) {
+                agenda[nombre] = telefono;
+                localStorage.setItem('agenda', JSON.stringify(agenda));
+                actualizarTabla();
+                formulario.reset();
+            }
+        });
+
+        // Función para eliminar contacto
+        function eliminarContacto(nombre) {
+            delete agenda[nombre];
+            localStorage.setItem('agenda', JSON.stringify(agenda));
+            actualizarTabla();
+        }
+
+        // Cargar tabla al inicio
+        actualizarTabla();
+    </script>
+</body>
+</html>
