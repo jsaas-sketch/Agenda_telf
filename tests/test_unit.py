@@ -2,6 +2,8 @@ import pytest
 from src.agenda import AgendaTelefonica
 
 @pytest.fixture
+
+
 def agenda():
     """Crea una agenda vacía para usar en las pruebas."""
     return AgendaTelefonica()
