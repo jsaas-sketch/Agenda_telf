@@ -3,9 +3,9 @@ name: Python application
 # 🟢 Cuándo se ejecuta este flujo
 on:
   push:
-    branches: [ "main" ]        # Cuando subes cambios a la rama principal
+    branches: [ "master" ]        # Cuando subes cambios a la rama principal
   pull_request:
-    branches: [ "main" ]        # O cuando alguien crea un Pull Request hacia main
+    branches: [ "master" ]        # O cuando alguien crea un Pull Request hacia main
 
 jobs:
   build:
