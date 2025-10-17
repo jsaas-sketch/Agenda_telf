@@ -1,8 +1,6 @@
 
 
 class AgendaTelefonica:
-    
-    
     def __init__(self):
         """Inicializa un diccionario vacío para almacenar los contactos."""
         self.contactos = {}
@@ -40,4 +38,3 @@ class AgendaTelefonica:
     def _validar_telefono(self, telefono):
         """Valida que el teléfono tenga exactamente 10 dígitos."""
         return telefono.isdigit() and len(telefono) == 10
-    

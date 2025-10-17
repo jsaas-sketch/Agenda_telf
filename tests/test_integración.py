@@ -1,16 +1,15 @@
 import pytest
 from src.agenda import AgendaTelefonica
 
-@pytest.fixture #crear datos comunes que se reutilizan en varias pruebas.
+
+@pytest.fixture  # crear datos comunes que se reutilizan en varias pruebas.
 def agenda():
     """Crea una agenda vacía para las pruebas de integración."""
     return AgendaTelefonica()
 
+
 def test_flujo_completo_agenda(agenda, capsys):
-    """
-    Prueba de integración:
-    Verifica que agregar, consultar, eliminar y mostrar trabajen correctamente juntos.
-    """
+    """Prueba de integración:Verifica que agregar, consultar, eliminar y mostrar trabajen correctamente juntos"""
     # === Agregar varios contactos ===
     agenda.agregar_contacto("Juan Perez", "0987654321")
     agenda.agregar_contacto("Maria Lopez", "0991234567")

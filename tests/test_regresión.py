@@ -1,15 +1,16 @@
 from src.agenda import AgendaTelefonica
 import pytest
 
+
 @pytest.fixture
 def agenda():
     return AgendaTelefonica()
 
 
-def test_regresion_eliminar_y_consultar(agenda):
+def test_regresion_eliminar_y_consultar(agenda: AgendaTelefonica):
     """
     Prueba de regresión:
-    Antes, si se eliminaba un contacto y luego se consultaba, 
+    Antes, si se eliminaba un contacto y luego se consultaba,
     podía devolver un error o resultado incorrecto.
     Ahora verificamos que funcione bien.
     """
