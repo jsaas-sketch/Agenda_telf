@@ -9,9 +9,9 @@ def agenda():
 def test_agregar_contacto(agenda):
     """Prueba agregar contactos válidos e inválidos."""
     # Caso válido
-    agenda.agregar_contacto("Juan Perez", "0987654321")
+    agenda.agregar_contacto("Fidel Castro", "0987654321")
     assert "Juan Perez" in agenda.contactos
-    assert agenda.contactos["Juan Perez"] == "0987654321"
+    assert agenda.contactos["Fidel Castro"] == "0987654321"
 
     # Nombre inválido
     with pytest.raises(ValueError, match="solo puede contener letras y espacios"):
@@ -25,8 +25,8 @@ def test_agregar_contacto(agenda):
 def test_consultar_contacto(agenda):
     """Prueba consultar contactos existentes y no existentes."""
     # Caso válido
-    agenda.agregar_contacto("Pedro Gomez", "0991234567")
-    resultado = agenda.consultar_contacto("Pedro Gomez")
+    agenda.agregar_contacto("Pedro Gómez", "0991234567")
+    resultado = agenda.consultar_contacto("Pedro Gómez")
     assert "0991234567" in resultado
 
     # Caso inexistente
